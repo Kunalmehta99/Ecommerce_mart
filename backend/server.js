@@ -7,12 +7,17 @@ import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import path from 'path'
+import morgan from 'morgan'
 import uploadRoutes from './routes/uploadRoutes.js'
 dotenv.config()
 
 connectDB()
 
 const app = express()
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'))
+}
+
 app.get('/', (req, res) => {
   res.send('API is running...')
 })
