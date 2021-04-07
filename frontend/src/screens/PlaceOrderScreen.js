@@ -28,9 +28,9 @@ const PlaceOrderScreen = ({ history }) => {
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
   cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
+    Number(cart.itemsPrice / 73) +
+    Number(cart.shippingPrice / 73) +
+    Number(cart.taxPrice / 73)
   ).toFixed(2)
 
   const orderCreate = useSelector((state) => state.orderCreate)
@@ -142,7 +142,7 @@ const PlaceOrderScreen = ({ history }) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>Rs.{cart.totalPrice}</Col>
+                  <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>

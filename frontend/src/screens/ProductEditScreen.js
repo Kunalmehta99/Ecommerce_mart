@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
@@ -7,7 +8,6 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
-import axios from 'axios'
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
@@ -20,6 +20,7 @@ const ProductEditScreen = ({ match, history }) => {
   const [countInStock, setCountInStock] = useState(0)
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
+
   const dispatch = useDispatch()
 
   const productDetails = useSelector((state) => state.productDetails)
@@ -45,7 +46,7 @@ const ProductEditScreen = ({ match, history }) => {
         setImage(product.image)
         setBrand(product.brand)
         setCategory(product.category)
-        setCountInStock(product.countInSock)
+        setCountInStock(product.countInStock)
         setDescription(product.description)
       }
     }
@@ -99,7 +100,6 @@ const ProductEditScreen = ({ match, history }) => {
         <h1>Edit Product</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
-
         {loading ? (
           <Loader />
         ) : error ? (
